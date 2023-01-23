@@ -4,10 +4,7 @@
     "target": "es2017",
     "outDir": "build/main",
     "rootDir": "src",
-    "types": [
-      "babylonjs",
-      "babylonjs-loaders"
-    ],
+    "types": [],
     "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
