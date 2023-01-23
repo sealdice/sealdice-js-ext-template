@@ -12,6 +12,8 @@
 
 首先打开模板项目地址，点击 `Use this template -> Create a new Repository`
 
+![image](https://user-images.githubusercontent.com/1579850/214084922-8c33c638-ec88-4ae6-80c1-bc3342dc8e9c.png)
+
 填写项目名点击确定后，你会拥有一个对应的代码仓库。
 
 随后——
@@ -35,6 +37,9 @@ npm run build
 #### 2. 如果你想在浏览器上开发
 
 点 `Code -> Create codespace on master`
+
+![image](https://user-images.githubusercontent.com/1579850/214085313-6a89ce4e-0ad3-4fa3-9107-c3852487c800.png)
+
 
 稍等一会之后，你应该得到了一个在线的VSCode环境，现在跟1的步骤一样去做就行了。
 
