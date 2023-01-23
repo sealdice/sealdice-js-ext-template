@@ -10,19 +10,7 @@
 
 ### 如何使用
 
-首先打开模板项目地址，点击 `Use this template -> Create a new Repository`
-
-![image](https://user-images.githubusercontent.com/1579850/214084922-8c33c638-ec88-4ae6-80c1-bc3342dc8e9c.png)
-
-填写项目名点击确定后，你会拥有一个对应的代码仓库。
-
-随后——
-
-#### 1. 如果你想在你的电脑上开发
-
-clone 或者下载项目，然后用vscode(或者你习惯的开发工具)打开项目目录。
-
-在终端中输入:
+clone或下载项目，随后:
 
 ```
 npm install
@@ -34,17 +22,7 @@ npm run build
 默认的名字是`sealdce-js-ext.js`，其逻辑写在src/index.ts
 
 
-#### 2. 如果你想在浏览器上开发
-
-点 `Code -> Create codespace on master`
-
-![image](https://user-images.githubusercontent.com/1579850/214085313-6a89ce4e-0ad3-4fa3-9107-c3852487c800.png)
-
-
-稍等一会之后，你应该得到了一个在线的VSCode环境，现在跟1的步骤一样去做就行了。
-
-
-### 如果你不太了解如何进行开发
+### 开发指南
 
 看这里，这边有大量的例子，以及海豹用户写的插件：
 
@@ -57,9 +35,7 @@ npm run build-dev
 node ./dev/sealdice-js-ext.js
 ```
 
-当然，不止是node，其他的在线js执行平台也一样。
-
-你甚至可以复制编译后的代码到devtools里去执行。
+当然，不止是node，任何其他js环境都行，浏览器里也行。
 
 
 ### 填写个人信息
