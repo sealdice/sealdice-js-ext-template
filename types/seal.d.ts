@@ -1,6 +1,7 @@
 declare namespace seal {
   /** 信息上下文 */
   export interface MsgContext {
+    endPoint: EndPointInfo;
     /** 当前群信息 */
     group: GroupInfo;
     /** 当前群的玩家数据 */
@@ -12,7 +13,16 @@ declare namespace seal {
     /** 权限等级 40邀请者 50管理 60群主 100master */
     privilegeLevel: number;
   }
-
+  export interface EndPointInfo {
+    id: string;
+    nickname: string;
+    state: number;
+    userId: string;
+    platform: string;
+    enable: boolean;
+  }
+  /** 获取所有 EndPointInfo */
+  export function getEndPoints(): EndPointInfo[];
   /** 群信息 */
   export interface GroupInfo {
     active: boolean;
@@ -60,11 +70,19 @@ declare namespace seal {
     messageType: 'group' | 'private';
     /** 群ID */
     groupId: string;
+    /** 服务器ID */
+    guildId: string;
     /** 发送者信息 */
     sender: Sender;
     /** 原始ID，用于撤回等情况 */
     rawId: string | number;
   }
+
+  /** 创建一个 Message 对象 */
+  export function newMessage(): Message;
+
+  /** 创建一个 ctx 对象 */
+  export function createTempCtx(endPoint: EndPointInfo, msg: Message): MsgContext;
 
   /** 发送者信息 */
   export interface Sender {
@@ -142,7 +160,7 @@ declare namespace seal {
     /** 指令映射 */
     cmdMap: { [key: string]: CmdItemInfo };
     /** 存放数据 */
-    storageSet(key: string, value: string);
+    storageSet(key: string, value: string): void;
     /** 取数据 */
     storageGet(key: string): string;
   }
@@ -156,25 +174,25 @@ declare namespace seal {
 
   export const ext: {
     /**
-     * 
+     *
      */
     new: (name: string, author: string, version: string) => ExtInfo;
 
     /**
      * 创建指令结果对象
-     * @param success 是否执行成功 
+     * @param success 是否执行成功
      */
     newCmdExecuteResult(success: boolean): CmdExecuteResult;
 
     /**
      * 注册一个扩展
-     * @param ext 
+     * @param ext
      */
     register(ext: ExtInfo): unknown;
 
     /**
      * 按名字查找扩展对象
-     * @param name 
+     * @param name
      */
     find(name: string): ExtInfo;
 
