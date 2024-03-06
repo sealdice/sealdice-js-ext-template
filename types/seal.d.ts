@@ -269,7 +269,7 @@ declare namespace seal {
     /** 历史记录时间戳 */
     times: number[];
     /** 拉黑原因记录 */
-    reasons: number[];
+    reasons: string[];
     /** 事发会话记录 */
     places: string[];
     /** 首次记录时间 */
