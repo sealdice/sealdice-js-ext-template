@@ -82,7 +82,10 @@ declare namespace seal {
   export function newMessage(): Message;
 
   /** 创建一个 ctx 对象 */
-  export function createTempCtx(endPoint: EndPointInfo, msg: Message): MsgContext;
+  export function createTempCtx(
+    endPoint: EndPointInfo,
+    msg: Message
+  ): MsgContext;
 
   /** 发送者信息 */
   export interface Sender {
@@ -129,9 +132,12 @@ declare namespace seal {
     getArgN(n: number): string;
   }
 
-
   interface CmdItemInfo {
-    solve: (ctx: MsgContext, msg: Message, cmdArgs: CmdArgs) => CmdExecuteResult;
+    solve: (
+      ctx: MsgContext,
+      msg: Message,
+      cmdArgs: CmdArgs
+    ) => CmdExecuteResult;
 
     /** 指令名称 */
     name: string;
@@ -197,7 +203,7 @@ declare namespace seal {
     find(name: string): ExtInfo;
 
     newCmdItemInfo(): CmdItemInfo;
-  }
+  };
 
   interface CocRuleInfo {
     /** 序号 */
@@ -229,16 +235,81 @@ declare namespace seal {
     newRule(): CocRuleInfo;
     newRuleCheckResult(): CocRuleCheckRet;
     registerRule(rule: CocRuleInfo): boolean;
-  }
+  };
 
   /** 代骰模式下，获取被代理人信息 */
   export function getCtxProxyFirst(ctx: MsgContext, msg: Message): MsgContext;
   /** 回复发送者(发送者私聊即私聊回复，群内即群内回复) */
-  export function replyToSender(ctx: MsgContext, msg: Message, text: string): void;
+  export function replyToSender(
+    ctx: MsgContext,
+    msg: Message,
+    text: string
+  ): void;
   /** 回复发送者(私聊回复，典型应用场景如暗骰) */
-  export function replyPerson(ctx: MsgContext, msg: Message, text: string): void;
+  export function replyPerson(
+    ctx: MsgContext,
+    msg: Message,
+    text: string
+  ): void;
   /** 回复发送者(群内回复，私聊时无效，典型应用场景暗骰) */
   export function replyGroup(ctx: MsgContext, msg: Message, text: string): void;
   /** 格式化文本 */
   export function format(ctx: MsgContext, text: string): string;
+
+  /** 表示一个黑名单项目 */
+  interface BanListInfoItem {
+    /** 对象 ID */
+    id: string;
+    /** 对象名称 */
+    name: string;
+    /** 怒气值。*/
+    score: number;
+    /** 0 正常，-10 警告，-30 禁止，30 信任 */
+    rank: number;
+    /** 历史记录时间戳 */
+    times: number[];
+    /** 拉黑原因记录 */
+    reasons: string[];
+    /** 事发会话记录 */
+    places: string[];
+    /** 首次记录时间 */
+    banTime: number;
+  }
+
+  /** 黑名单操作 */
+  export const ban: {
+    /**
+     * 拉黑指定 ID
+     * @param ctx 上下文
+     * @param id 黑名单用户或群组 ID
+     * @param place 事发会话 ID
+     * @param reason 拉黑原因
+     */
+    addBan(ctx: MsgContext, id: string, place: string, reason: string): void;
+
+    /**
+     * 信任指定 ID
+     * @param ctx 上下文
+     * @param id 信任用户或群组 ID
+     * @param place 事发会话 ID
+     * @param reason 信任原因
+     */
+    addTrust(ctx: MsgContext, id: string, place: string, reason: string): void;
+
+    /**
+     * 从黑名单删除相关 ID
+     * @param ctx 上下文
+     * @param id 要移除的用户 ID
+     */
+    remove(ctx: MsgContext, id: string): void;
+
+    /** 获取所有黑名单列表 */
+    getList(): BanListInfoItem[];
+
+    /**
+     * 获取指定 ID 的黑名单记录。返回值可能为空。
+     * @param id 用户群组
+     */
+    getUser(id: string): BanListInfoItem | null;
+  };
 }
