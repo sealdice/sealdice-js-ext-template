@@ -25,6 +25,9 @@ module.exports = {
     treeShaking: true,
     logLevel: 'error',
     define: {'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')},
+    supported: {
+      'async-await': true,
+    },
   },
   build: {
     // Bundles JavaScript.
@@ -50,5 +53,8 @@ module.exports = {
     treeShaking: true,
     logLevel: 'error',
     define: {'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')},
+    supported: {
+      'async-await': true,
+    },
   }
 }
