@@ -296,54 +296,57 @@ declare namespace seal {
     BanRankTrust = 30
   */
   interface BanListInfoItem {
-    // 可能是用户id
-    id: string
-    // 名称
-    name: string
-    // 怒气值
-    score: number
-    // 0 没事 -10警告 -30禁止 30信任
-    rank: BanRankType
-    // 事发时间
-    times: number[]
-    // 拉黑原因
-    reasons: string[]
-    // 发生地点
-    places: string[]
-    // 拉入黑名单时刻时间戳
-    bantime: number
+    /** 对象 ID */
+    id: string;
+    /** 对象名称 */
+    name: string;
+    /** 怒气值。*/
+    score: number;
+    /** 0 正常，-10 警告，-30 禁止，30 信任 */
+    rank: number;
+    /** 历史记录时间戳 */
+    times: number[];
+    /** 拉黑原因记录 */
+    reasons: string[];
+    /** 事发会话记录 */
+    places: string[];
+    /** 首次记录时间 */
+    banTime: number;
   }
-
+  /** 黑名单操作 */
   export const ban: {
     /**
-     * 将用户加到黑名单
-     * @param ctx 上下文对象
-     * @param id 用户id
-     * @param place 处罚原因发生位置
-     * @param reason 处罚原因
+     * 拉黑指定 ID
+     * @param ctx 上下文
+     * @param id 黑名单用户或群组 ID
+     * @param place 事发会话 ID
+     * @param reason 拉黑原因
      */
     addBan(ctx: MsgContext, id: string, place: string, reason: string): void;
 
     /**
-     * 将用户加到白名单
-     * @param ctx 上下文对象
-     * @param id 用户id
-     * @param place 奖励原因发生位置
-     * @param reason 奖励原因
+     * 信任指定 ID
+     * @param ctx 上下文
+     * @param id 信任用户或群组 ID
+     * @param place 事发会话 ID
+     * @param reason 信任原因
      */
     addTrust(ctx: MsgContext, id: string, place: string, reason: string): void;
 
     /**
      * 将用户从名单中删除
      * @param ctx 上下文对象
-     * @param id 用户id
+     * @param id 要移除的用户 ID
      */
     remove(ctx: MsgContext, id: string): void;
 
-    // 获取名单全部用户
+    /** 获取名单全部用户 */ 
     getList(): BanListInfoItem[];
 
-    // 查询指定用户的（拉黑）历史数据
+    /**
+     * 获取指定 ID 的黑名单记录。返回值可能为空。
+     * @param id 用户群组
+     */
     getUser(id: string): BanListInfoItem;
   }
 
