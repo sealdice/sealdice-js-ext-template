@@ -287,7 +287,7 @@ declare namespace seal {
   type BanRankType = number
   /*
     禁止等级
-    BanRankBanned = -30 
+    BanRankBanned = -30
     警告等级
     BanRankWarn = -10
     常规等级
@@ -340,7 +340,7 @@ declare namespace seal {
      */
     remove(ctx: MsgContext, id: string): void;
 
-    /** 获取名单全部用户 */ 
+    /** 获取名单全部用户 */
     getList(): BanListInfoItem[];
 
     /**
@@ -392,7 +392,7 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    registerStringConfig(ext: ExtInfo,key: string,defaultValue: string,desc?: string): unknown;
+    registerStringConfig(ext: ExtInfo,key: string,defaultValue: string,desc?: string): void;
     /**
      * 注册一个整型的配置项
      * @param ext 扩展对象
@@ -400,7 +400,7 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    registerIntConfig(ext: ExtInfo,key: string,defaultValue: number,desc?: string): unknown;
+    registerIntConfig(ext: ExtInfo,key: string,defaultValue: number,desc?: string): void;
     /**
      * 注册一个布尔类型的配置项
      * @param ext 扩展对象
@@ -408,7 +408,7 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    registerBoolConfig(ext: ExtInfo,key: string,defaultValue: boolean,desc?: string): unknown;
+    registerBoolConfig(ext: ExtInfo,key: string,defaultValue: boolean,desc?: string): void;
     /**
      * 注册一个浮点数类型的配置项
      * @param ext 扩展对象
@@ -416,7 +416,7 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    registerFloatConfig(ext: ExtInfo,key: string,defaultValue: number,desc?: string): unknown;
+    registerFloatConfig(ext: ExtInfo,key: string,defaultValue: number,desc?: string): void;
     /**
      * 注册一个template类型的配置项
      * @param ext 扩展对象
@@ -424,7 +424,7 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    registerTemplateConfig(ext: ExtInfo,key: string,defaultValue: string[],desc?: string): unknown;
+    registerTemplateConfig(ext: ExtInfo,key: string,defaultValue: string[],desc?: string): void;
     /**
      * 注册一个option类型的配置项
      * @param ext 扩展对象
@@ -433,7 +433,7 @@ declare namespace seal {
      * @param option 可选项
      * @param desc 描述
      */
-    registerOptionConfig(ext: ExtInfo,key: string,defaultValue: string,option: string[],desc?: string): unknown;
+    registerOptionConfig(ext: ExtInfo,key: string,defaultValue: string,option: string[],desc?: string): void;
     /**
      * 创建一个新的配置项
      * @param ext 扩展对象
@@ -441,13 +441,13 @@ declare namespace seal {
      * @param defaultValue 配置项值
      * @param desc 描述
      */
-    newConfigItem(ext: ExtInfo,key: string,defaultValue: any,desc: string):ConfigItem;
+    newConfigItem(ext: ExtInfo,key: string,defaultValue: any,desc: string): ConfigItem;
     /**
      * 注册配置
-     * @param ext 扩展对象 
+     * @param ext 扩展对象
      * @param configs 配置项对象
      */
-    registerConfig(ext: ExtInfo,...configs:ConfigItem[]):unknown;
+    registerConfig(ext: ExtInfo,...configs:ConfigItem[]): void;
     /**
      * 获取指定名称的配置项对象
      * @param ext 扩展对象
@@ -459,37 +459,37 @@ declare namespace seal {
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getStringConfig(ext: ExtInfo,key: string): ConfigItem;
+    getStringConfig(ext: ExtInfo,key: string): string;
     /**
      * 获取指定名称的整型配置项对象
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getIntConfig(ext: ExtInfo,key: string): ConfigItem;
+    getIntConfig(ext: ExtInfo,key: string): number;
     /**
      * 获取指定名称的布尔类型配置项对象
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getBoolConfig(ext: ExtInfo,key: string): ConfigItem;
+    getBoolConfig(ext: ExtInfo,key: string): boolean;
     /**
      * 获取指定名称的浮点数类型配置项对象
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getFloatConfig(ext: ExtInfo,key: string): ConfigItem;
+    getFloatConfig(ext: ExtInfo,key: string): number;
     /**
      * 获取指定名称的template类型配置项对象
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getTemplateConfig(ext: ExtInfo,key: string): ConfigItem;
+    getTemplateConfig(ext: ExtInfo,key: string): string[];
     /**
      * 获取指定名称的option类型配置项对象
      * @param ext 扩展对象
      * @param key 配置项名称
      */
-    getOptionConfig(ext: ExtInfo,key: string): ConfigItem;
+    getOptionConfig(ext: ExtInfo,key: string): string;
     /**
      * 卸载对应名称的配置项
      * @param ext 扩展对象
@@ -596,7 +596,7 @@ declare namespace seal {
    */
   export function createTempCtx(ep: EndPointInfo, msg: Message): MsgContext;
   /**
-   * 
+   *
    * @param ctx 上下文
    * @param tmpl 模板文本
    */
@@ -610,7 +610,7 @@ declare namespace seal {
   export function getCtxProxyAtPos(ctx: MsgContext, cmdArgs: CmdArgs, pos: number): MsgContext;
 
   type VersionDetailsType = {
-    // 
+    // 内部版本号，新版本的版本号永远比旧版本的大
     versionCode: number
     // 版本号+日期 如 1.4.6+20240810
     version: string
