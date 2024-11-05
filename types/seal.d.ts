@@ -190,6 +190,8 @@ declare namespace seal {
     command: string;
     /** 指令参数，如“.ra 力量 测试”时，参数1为“力量”，参数2为“测试” */
     args: string[];
+    /** 关键字参数 */
+    kwargs: Kwarg[];
     /** 当前被at的有哪些 */
     at: AtInfo[];
     /** 参数的原始文本 */
