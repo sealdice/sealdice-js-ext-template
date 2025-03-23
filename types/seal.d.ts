@@ -215,7 +215,7 @@ declare namespace seal {
     /** 吃掉前缀并去除复数空格 `set xxx  xxx` => `xxx xxx`，返回修改后的字符串和是否修改成功的布尔值  */
     eatPrefixWith(...s: string[]): [string, boolean]
     /** 将第 n 个参数及之后参数用空格拼接起来; 如指令 `send to qq x1 x2`,n=3返回 `x1 x2` */
-    getRestArgsFrom(n: number): number
+    getRestArgsFrom(n: number): string
     /** 检查第N项参数是否为某个字符串，n从1开始，若没有第n项参数也视为失败 */
     isArgEqual(n: number, ...s: string[]): boolean
   }
