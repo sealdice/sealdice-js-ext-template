@@ -16,48 +16,6 @@ declare namespace seal {
     delegateText: string
     /** 对通知列表发送消息 */
     notice(text: string): void
-
-    // 谨慎使用角色卡相关 api ，有可能写坏数据库
-
-    /** 绑定角色卡到当前群 */
-    chBindCur(name: string)
-    /* 获取当前群绑定角色 返回名字或者空字符串*/
-    chBindCurGet(): string
-    /** 获取一个正在绑定状态的卡，可用于该卡片是否绑卡检测 */
-    chBindGet(name: string): ValueMap
-    /** 返回当前卡绑定的群列表 */
-    chBindGetList(): string[]
-    /** 解除某个角色的绑定 返回绑定过的群列表 */
-    chUnbind(name: string): string[]
-    /** 解除绑定 成功返回 `[角色名,true]`，失败返回 `["",false]`  */
-    chUnbindCur(name: string): [string, boolean]
-
-
-    /* 判断角色是否存在 */
-    chExists(name: string): boolean
-    /** 新建角色 成功 true；存在同名角色 false */
-    chNew(name: string): boolean
-    /** 清空当前群角色卡变量 返回被清空的变量数量 */
-    chVarsClear(): number
-    /** 获取当前角色 ValueMap */
-    chVarsGet(): [ValueMap, boolean]
-    /** 获取当前角色变量数量，底层为 `ValueMap.len()` */
-    chVarsNumGet(): number
-    /** 更新角色卡操作时间 */
-    chVarsUpdateTime(): void
-
-    // 这些接口不推荐使用，太麻烦了
-    /**  获取角色数据 成功返回 ValueMap ，失败返回 null */
-    chGet(name: string): ValueMap | null
-    /** 加载角色，成功返回 ValueMap ，失败返回 null */
-    chLoad(name: string): ValueMap | null
-    /** 加载个人群内数据 */
-    loadGroupVars(g: GroupInfo, p: GroupPlayerInfo): void
-    /** 加载个人全局数据 */
-    loadPlayerGlobalVars(): void
-    /** 加载个人群内数据 */
-    loadPlayerGroupVars(): void
-
   }
 
   export interface ValueMap {
