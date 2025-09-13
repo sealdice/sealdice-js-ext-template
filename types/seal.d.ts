@@ -223,7 +223,7 @@ declare namespace seal {
     /** 监听 收到消息 事件，如 log 模块记录收到文本 */
     onMessageReceived: (ctx: MsgContext, msg: Message) => void
     /** 监听 发送消息 事件，如 log 模块记录指令文本 */
-    onMessageSend: (ctx: MsgContext, msg: Message) => void
+    onMessageSend: (ctx: MsgContext, msg: Message, flag: string) => void
     /** 获取扩展介绍文本 */
     getDescText(): string
     /** 监听 加载时 事件，如 deck 模块需要读取牌堆文件 */
