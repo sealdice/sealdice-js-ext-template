@@ -1,4 +1,5 @@
 import { sample } from "lodash-es";
+
 import { nameList } from "./utils";
 
 function main() {
@@ -15,7 +16,7 @@ function main() {
   cmdSeal.help = '召唤一只海豹，可用.seal <名字> 命名';
 
   cmdSeal.solve = (ctx, msg, cmdArgs) => {
-    let val = cmdArgs.getArgN(1);
+    let val: string | undefined = cmdArgs.getArgN(1);
     switch (val) {
       case 'help': {
         const ret = seal.ext.newCmdExecuteResult(true);

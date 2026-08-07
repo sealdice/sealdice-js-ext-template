@@ -1,0 +1,35 @@
+name: Build Check
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check (strict)
+        run: npm run typecheck
+
+      - name: Build and validate package
+        run: npm run package:check
+
+      - name: Smoke test
+        run: npm run smoke
