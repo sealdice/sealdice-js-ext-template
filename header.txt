@@ -5,6 +5,6 @@
 // @description  这是海豹的js扩展模板项目，请自行修改信息
 // @timestamp    1674477074
 // 2023/1/23
-// @license      MIT
+// @license      All Rights Reserved（请自行根据开源协议调整）
 // @homepageURL  https://github.com/sealdice/sealdice-js-template
 // ==/UserScript==
