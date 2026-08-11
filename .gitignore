@@ -10,5 +10,6 @@ yarn.lock
 *.zip
 *.xlsx
 .dev/
+dist/
 dev/
 sealpack/scripts/
