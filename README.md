@@ -43,7 +43,7 @@ node ./dev/sealdice-js-ext.js
 
 | 文件 | 模板内容 | 发布前需要做什么 |
 | --- | --- | --- |
-| `package.json` | `sealdice-js-ext-template`、模板描述、版本号、仓库地址、License | 修改项目名称、描述、仓库地址、关键词和版本号。`version` 是打包与发版使用的唯一版本来源；License 应与根目录 `LICENSE` 保持一致。 |
+| `package.json` | `sealdice-js-ext-template`、模板描述、版本号、仓库地址、`All Rights Reserved（请自行根据开源协议调整）` | 修改项目名称、描述、仓库地址、关键词和版本号。`version` 是打包与发版使用的唯一版本来源；License 应与根目录 `LICENSE` 保持一致。 |
 | `package-lock.json` | 与 `package.json` 对应的锁定元数据 | 修改 `package.json` 后使用 `npm install --package-lock-only` 更新，不要手工改依赖版本。 |
 | `header.txt` | `模板项目`、`作者名`、示例描述和占位主页 | 修改 `@name`、`@author`、`@description`、`@homepageURL`、`@license` 等用户脚本元数据。该文件会原样添加到生成的 JS 文件头部，版本字段不会由脚本自动改写。 |
 | `tools/build-config.js` | `sealdice-js-ext.js` | 按需修改 `filename`。它决定 `dist/` 下的单文件名称，也会决定豹包中的 `scripts/main.js` 来源。 |
@@ -52,7 +52,7 @@ node ./dev/sealdice-js-ext.js
 | `sealpack/assets/icon.png` | 空白占位图 | 发布到 SealRepo 前替换为自己的商店图标，并保持 `info.toml` 中的路径不变。当前文件只用于保证模板豹包结构完整，不能作为正式商店素材。 |
 | `sealpack/README.md` | `你的插件名` 和模板安装说明 | 改成面向插件用户的说明，至少包含用途、安装方式、指令或功能列表、配置项和已知限制。不要把开发流程说明写进豹包用户 README。 |
 | `src/index.ts`、`src/utils.ts` | `test` 扩展、`.seal` 示例指令和示例名字 | 用自己的插件逻辑替换或删除示例代码。它们只是用于验证模板构建、注册和 smoke 测试的最小示例。 |
-| `LICENSE` | 模板许可证文本 | 如果项目采用其他许可证，必须同步替换许可证文件、`package.json`、`sealpack/info.toml` 和 `header.txt` 中的声明。 |
+| `LICENSE` | `All Rights Reserved（请自行根据开源协议调整）` 占位说明 | 发布前必须替换为实际采用的许可证文本，并同步修改 `package.json`、`sealpack/info.toml` 和 `header.txt` 中的声明。 |
 
 以下内容由构建脚本生成，不应直接编辑或提交：
 

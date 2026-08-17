@@ -10,7 +10,7 @@ id = "your-name/your-plugin"
 name = "你的插件名"
 version = "1.0.0"
 authors = ["你的名字"]
-license = "MIT"
+license = "All Rights Reserved（请自行根据开源协议调整）"
 description = "基于 sealdice-js-ext-template 的海豹 JS 扩展"
 keywords = ["sealdice", "template", "插件"]
 

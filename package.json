@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "海豹（SealDice）JS 扩展项目模板，内置 esbuild 构建、lint / 类型检查 / 冒烟测试与 sealpack 发豹包流程",
   "repository": "https://github.com/sealdice/sealdice-js-ext-template",
-  "license": "MIT",
+  "license": "All Rights Reserved（请自行根据开源协议调整）",
   "keywords": [],
   "scripts": {
     "build": "cross-env NODE_ENV=production node tools/build.js",
