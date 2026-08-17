@@ -1,13 +1,10 @@
 {
   "compilerOptions": {
-    "incremental": true,
     "target": "es2017",
-    "outDir": "build/main",
     "rootDir": "src",
     "types": [],
     "moduleResolution": "bundler",
     "module": "esnext",
-    "declaration": true,
     "inlineSourceMap": false,
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     "resolveJsonModule": true /* Include modules imported with .json extension. */,
@@ -40,9 +37,6 @@
 
     "lib": ["es2017", "DOM"],
     "typeRoots": [
-      "../UnityProject/Assets/Vendors/Puerts/Typing",
-      "../UnityProject/Assets/Gen/Typing",
-      // "../Project/Assets/Resources/FairyGUI-dist/main",
       "./node_modules/@types",
       "types"
     ]
