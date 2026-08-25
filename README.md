@@ -37,16 +37,36 @@ npm run build-dev
 node ./dev/sealdice-js-ext.js
 ```
 
-## 填写个人信息
+## 填写个人信息与替换占位内容
 
-开发插件前（或开始时），需要修改以下几处：
+本仓库是通用模板，不是可以直接发布的插件。模板中保留了用于演示构建流程的占位值和示例代码；开始开发后，应按下表逐项替换。只运行 `npm run build` 并不会自动替换这些内容。
 
-| 文件 | 说明 |
-| --- | --- |
-| `tools/build-config.js` | 开头 `var filename = 'sealdice-js-ext.js';`，改成你中意的文件名，注意不要与现有插件重名 |
-| `package.json` | `version` 字段是版本号唯一来源，打包与发版都会从这里读取 |
-| `header.txt` | 插件描述信息（名称、作者、版本、描述、更新地址等） |
-| `sealpack/info.toml` | 豹包元数据：`id`（namespace/package 格式）、`name`、`authors`、`description` 等；`version` 会在打包时自动同步 |
+| 文件 | 模板内容 | 发布前需要做什么 |
+| --- | --- | --- |
+| `package.json` | `sealdice-js-ext-template`、模板描述、版本号、仓库地址、`All Rights Reserved（请自行根据开源协议调整）` | 修改项目名称、描述、仓库地址、关键词和版本号。`version` 是打包与发版使用的唯一版本来源；License 应与根目录 `LICENSE` 保持一致。 |
+| `package-lock.json` | 与 `package.json` 对应的锁定元数据 | 修改 `package.json` 后使用 `npm install --package-lock-only` 更新，不要手工改依赖版本。 |
+| `header.txt` | `模板项目`、`作者名`、示例描述和占位主页 | 修改 `@name`、`@author`、`@description`、`@homepageURL`、`@license` 等用户脚本元数据。该文件会原样添加到生成的 JS 文件头部，版本字段不会由脚本自动改写。 |
+| `tools/build-config.js` | `sealdice-js-ext.js` | 按需修改 `filename`。它决定 `dist/` 下的单文件名称，也会决定豹包中的 `scripts/main.js` 来源。 |
+| `sealpack/info.toml` | `your-name/your-plugin`、`你的插件名`、`你的名字`、模板描述 | 修改 `[package]` 下的 `id`、`name`、`authors`、`description`、`keywords` 等字段。`id` 必须是唯一的 `namespace/package` 格式；`version` 由 `scripts/prepare-sealpack.js` 根据 `package.json` 自动同步，不需要重复维护。 |
+| `sealpack/info.toml` 的 `[permissions]`、`[contents]`、`[store]` | 示例权限、内容路径和商店分类 | 根据插件实际行为声明权限，并确认 `contents` 中的路径确实存在。不要为了通过校验而声明不需要的网络、文件或危险操作权限。 |
+| `sealpack/assets/icon.png` | 空白占位图 | 发布到 SealRepo 前替换为自己的商店图标，并保持 `info.toml` 中的路径不变。当前文件只用于保证模板豹包结构完整，不能作为正式商店素材。 |
+| `sealpack/README.md` | `你的插件名` 和模板安装说明 | 改成面向插件用户的说明，至少包含用途、安装方式、指令或功能列表、配置项和已知限制。不要把开发流程说明写进豹包用户 README。 |
+| `src/index.ts`、`src/utils.ts` | `test` 扩展、`.seal` 示例指令和示例名字 | 用自己的插件逻辑替换或删除示例代码。它们只是用于验证模板构建、注册和 smoke 测试的最小示例。 |
+| `LICENSE` | `All Rights Reserved（请自行根据开源协议调整）` 占位说明 | 发布前必须替换为实际采用的许可证文本，并同步修改 `package.json`、`sealpack/info.toml` 和 `header.txt` 中的声明。 |
+
+以下内容由构建脚本生成，不应直接编辑或提交：
+
+- `dist/sealdice-js-ext.js`：`npm run build` 生成的单文件插件；`dist/` 默认被 Git 忽略。
+- `sealpack/scripts/main.js`：`npm run package:check` 或打包脚本从 `dist/` 同步的豹包脚本。
+- `build/`、`dev/` 和 `*.tsbuildinfo`：本地构建或类型检查缓存。
+
+### 发布前最小检查清单
+
+1. 全文搜索并替换 `你的插件名`、`你的名字`、`your-name/your-plugin`、`作者名` 等占位值。
+2. 确认 `package.json`、`header.txt`、`sealpack/info.toml` 和 `LICENSE` 的名称、版本、作者和许可证信息一致。
+3. 将 `sealpack/assets/icon.png` 换成正式图标，并检查 `[store]` 中的 README、图标和截图路径。
+4. 检查 `[permissions]` 和 `[contents]` 是否只声明插件实际需要的内容。
+5. 执行 `npm run check && npm run package:check`，确认构建、类型、smoke 测试和豹包校验全部通过。
 
 ## 打包豹包（sealpack）
 
@@ -70,7 +90,7 @@ npm run pack:release    # 打出带版本号的本体豹包
 ### 前提
 
 1. 仓库已推送到 GitHub，并配置 Secrets：`SEALPACK_TOKEN`（海豹商店仓库的发布令牌，在商店后台获取）。
-2. 已按上面「填写个人信息」改好 `sealpack/info.toml`，并确认 `package.json` 的 `version`。
+2. 已按上面「填写个人信息与替换占位内容」改好 `sealpack/info.toml`，并确认 `package.json` 的 `version`。
 
 ### 发布流程
 

@@ -1,11 +1,9 @@
 {
-  "name": "a-long-story",
+  "name": "sealdice-js-ext-template",
   "version": "1.0.0",
-  "description": "once upon a time, ...",
-  "main": "build/index.js",
-  "typings": "build/index.d.ts",
-  "repository": "https://github.com/sealdice/seal-swordworld",
-  "license": "Apache-2.0",
+  "description": "海豹（SealDice）JS 扩展项目模板，内置 esbuild 构建、lint / 类型检查 / 冒烟测试与 sealpack 发豹包流程",
+  "repository": "https://github.com/sealdice/sealdice-js-ext-template",
+  "license": "All Rights Reserved（请自行根据开源协议调整）",
   "keywords": [],
   "scripts": {
     "build": "cross-env NODE_ENV=production node tools/build.js",
@@ -38,20 +36,6 @@
     "sealpack": "^0.1.2",
     "source-map-support": "^0.5.21",
     "typescript": "^5.5.4"
-  },
-  "files": [
-    "build/main",
-    "build/module",
-    "!**/*.spec.*",
-    "!**/*.json",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
-  ],
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "prettier": {
     "singleQuote": true
